@@ -25,7 +25,7 @@ const Header = () => {
 			<div>
 				{(auth && (
 					<>
-						<NavLink to="/login" className="main-nav-item">
+						<NavLink to="/profile" className="main-nav-item">
 							<i className="fa fa-user-circle nav-icon"></i>
 							{user && user.firstName}
 						</NavLink>
