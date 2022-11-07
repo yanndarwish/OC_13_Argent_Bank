@@ -2,11 +2,10 @@ import { NavLink } from "react-router-dom"
 import logo from "../../assets/img/argentBankLogo.png"
 import { useSelector, useDispatch } from "react-redux"
 import { logout } from "../../redux/features/login/loginSlice"
-import { useGetProfileQuery } from "../../redux/services/api"
 
 const Header = () => {
 	const auth = useSelector((state) => state.login.token)
-	const { data } = useGetProfileQuery()
+	const user = useSelector((state) => state.login.userInfos) 
 	const dispatch = useDispatch()
 
 	const handleLogout = () => {
@@ -28,7 +27,7 @@ const Header = () => {
 					<>
 						<NavLink to="/login" className="main-nav-item">
 							<i className="fa fa-user-circle nav-icon"></i>
-							{data && data.body.firstName}
+							{user && user.firstName}
 						</NavLink>
 						<NavLink
 							to="/"
