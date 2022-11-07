@@ -12,6 +12,27 @@
   padding: 10px;
 }
 
+.edit-form {
+  display:flex;
+  flex-direction: column;
+  gap:1rem
+}
+
+.edit-input-container,
+.edit-button-container {
+  display:flex;
+  justify-content: center;
+  gap:1rem;
+}
+
+.edit-input {
+  padding:0.5rem;
+}
+
+.edit-button-container > * {
+  width:100px;
+}
+
 .header {
   color: #fff;
   margin-bottom: 2rem;

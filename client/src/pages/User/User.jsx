@@ -35,22 +35,28 @@ const User = () => {
 		return (
 			<section>
 				<h2 className="sr-only">Edit Section</h2>
-				<form onSubmit={handleEdit}>
-					<div>
+				<form onSubmit={handleEdit} className="edit-form">
+					<div className="edit-input-container">
 						<input
 							type="text"
 							id="firstName"
+							className="edit-input"
 							placeholder={data && data.body.firstName}
 						/>
 						<input
 							type="text"
 							id="lastName"
+							className="edit-input"
 							placeholder={data && data.body.lastName}
 						/>
 					</div>
-					<div>
-						<button type="submit">Save</button>
-						<button onClick={() => toggleEditMode()}>Cancel</button>
+					<div className="edit-button-container">
+						<button className="edit-button" type="submit">
+							Save
+						</button>
+						<button className="edit-button" onClick={() => toggleEditMode()}>
+							Cancel
+						</button>
 					</div>
 				</form>
 			</section>
