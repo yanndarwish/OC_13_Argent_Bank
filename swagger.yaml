@@ -1,7 +1,8 @@
 swagger: '2.0'
 info:
   title: Bank Argent API documentation
-  description: Contains all available API endpoints in this codebase
+  description: Contains all available API endpoints in this codebase.
+    The Transaction Module is a spec proposal for the upcomming V2 features.
   version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
 host: localhost:3001
@@ -66,7 +67,8 @@ paths:
       summary: User Profile API
       description: API for fetching a user profile
       parameters:
-        - in: header
+        - type: string
+          in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
@@ -89,7 +91,8 @@ paths:
       summary: User Profile API
       description: API for updating a user profile
       parameters:
-        - in: header
+        - type: string
+          in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
@@ -106,6 +109,124 @@ paths:
           description: User profile retrieved successully
           schema:
             $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: User Transactions
+      description: API for getting all the months transactions
+      parameters:
+        - type: string 
+          in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transactions retrieved successully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transactions/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Transaction Details
+      description: API for getting the details of a specific transaction
+      parameters:
+        - type: integer
+          name: id
+          in: path
+          required: true
+        - type: string 
+          in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transaction details retrieved successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '404':
+          description: Invalid Fields - Transaction not found
+        '500':
+          description: Internal Server Error
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Add Transaction
+      description: API for adding a new transaction
+      parameters:
+        - type: integer
+          name: id
+          in: path
+          required: true
+        - type: string 
+          in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          schema: 
+            $ref: '#/definitions/Transaction'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transaction added successully
+          schema:
+            $ref: '#/definitions/TransactionResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Module
+      summary: Update Transaction
+      description: API for updating a transaction
+      parameters:
+        - type: integer
+          name: id
+          in: path
+          required: true
+        - type: string 
+          in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          schema: 
+            $ref: '#/definitions/Transaction'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User transaction added successully
+          schema:
+            $ref: '#/definitions/TransactionResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -164,3 +285,47 @@ definitions:
         type: string
       lastName:
         type: string
+  Transactions:
+    type: array
+    items: 
+      type: object
+      properties:
+        id: 
+          type: string
+        date: 
+          type: string
+        amount: 
+          type: integer
+  Transaction:
+    type: object
+    properties:
+      id: 
+        type: string
+      name:
+        type: string
+      date: 
+        type: string
+      time:
+        type: string
+      amount: 
+        type: integer
+      reciever:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+  TransactionResponse: 
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          transaction:
+            type: object
