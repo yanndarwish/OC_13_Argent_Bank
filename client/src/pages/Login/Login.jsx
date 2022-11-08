@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
-import SignInForm from "../../components/Sign-In-Form/SignInForm"
+import LoginForm from "../../components/LoginForm/LoginForm"
 
-const SignIn = () => {
+const Login = () => {
 	const auth = useSelector((state) => state.login.token)
 
 
@@ -15,10 +15,10 @@ const SignIn = () => {
 			<section className="sign-in-content">
 				<i className="fa fa-user-circle sign-in-icon"></i>
 				<h1>Sign In</h1>
-				<SignInForm />
+				<LoginForm />
 			</section>
 		</main>
 	)
 }
 
-export default SignIn
+export default Login

@@ -1,7 +1,7 @@
 import { Form } from "react-router-dom"
 import { useGetAuthMutation } from "../../redux/services/api"
 
-const SignInForm = () => {
+const LoginForm = () => {
 	const [getAuthed, res] = useGetAuthMutation()
 
 	const errCheck = (errorType) => res.isError && res.error.status === errorType
@@ -56,4 +56,4 @@ const SignInForm = () => {
 	)
 }
 
-export default SignInForm
+export default LoginForm

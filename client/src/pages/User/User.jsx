@@ -9,9 +9,6 @@ const User = () => {
 	const { data, isError, error } = useGetProfileQuery()
     const [updateProfile] = useUpdateProfileMutation()
 	const [isEditing, setIsEditing] = useState(false)
-
-	const errCheck = (errorType) => isError && error.status === errorType
-
 	let accounts = [
 		{
 			title: "Argent Bank Checking (x8349)",
@@ -26,6 +23,18 @@ const User = () => {
 			amount: 184.3,
 		},
 	]
+
+	const errCheck = (errorType) => isError && error.status === errorType
+
+	const handleEdit = async (e) => {
+		e.preventDefault()
+		const elements = e.target.elements
+		const payload = {
+			firstName: elements.firstName.value,
+			lastName: elements.lastName.value,
+		}
+		await updateProfile(payload)
+	}
 
 	const toggleEditMode = () => {
 		setIsEditing(!isEditing)
@@ -61,16 +70,6 @@ const User = () => {
 				</form>
 			</section>
 		)
-	}
-
-	const handleEdit = async (e) => {
-		e.preventDefault()
-		const elements = e.target.elements
-		const payload = {
-			firstName: elements.firstName.value,
-			lastName: elements.lastName.value,
-		}
-        await updateProfile(payload)
 	}
 
 	if (!auth) {
