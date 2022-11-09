@@ -34,6 +34,7 @@ const User = () => {
 			lastName: elements.lastName.value,
 		}
 		await updateProfile(payload)
+		toggleEditMode()
 	}
 
 	const toggleEditMode = () => {
