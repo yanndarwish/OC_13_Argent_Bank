@@ -186,6 +186,7 @@ paths:
           required: true
         - in: body
           name: body
+          required: true
           schema: 
             $ref: '#/definitions/Transaction'
       produces:
@@ -218,6 +219,7 @@ paths:
           required: true
         - in: body
           name: body
+          required: true
           schema: 
             $ref: '#/definitions/Transaction'
       produces:
@@ -296,12 +298,16 @@ definitions:
           type: string
         amount: 
           type: integer
+        description: 
+          type: string
+        balance:
+          type: integer
   Transaction:
     type: object
     properties:
       id: 
         type: string
-      name:
+      description:
         type: string
       date: 
         type: string
@@ -309,12 +315,12 @@ definitions:
         type: string
       amount: 
         type: integer
-      reciever:
+      balance:
+        type: integer
+      category:
         type: string
-      tags:
-        type: array
-        items:
-          type: string
+      notes: 
+        type: string
   TransactionResponse: 
     type: object
     properties:
