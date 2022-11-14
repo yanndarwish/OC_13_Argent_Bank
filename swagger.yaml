@@ -146,10 +146,6 @@ paths:
       summary: Add Transaction
       description: API for adding a new transaction
       parameters:
-        - type: integer
-          name: id
-          in: path
-          required: true
         - type: string 
           in: header
           name: Authorization
