@@ -113,7 +113,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/transactions:
+  /users/{userId}/transactions/{year}/{month}:
     get:
       security:
         - Bearer: []
@@ -122,6 +122,18 @@ paths:
       summary: User Transactions
       description: API for getting all the months transactions
       parameters:
+        - type: integer
+          name: userId
+          in: path
+          required: true
+        - type: integer
+          name: year
+          in: path
+          required: true
+        - type: integer
+          name: month
+          in: path
+          required: true
         - type: string 
           in: header
           name: Authorization
@@ -138,6 +150,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /users/{userId}/transactions:
     post:
       security:
         - Bearer: []
@@ -146,6 +159,10 @@ paths:
       summary: Add Transaction
       description: API for adding a new transaction
       parameters:
+        - type: integer
+          name: userId
+          in: path
+          required: true
         - type: string 
           in: header
           name: Authorization
@@ -167,7 +184,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/transactions/{id}:
+  /users/{userId}/transactions/{transactionId}:
     get:
       security:
         - Bearer: []
@@ -177,7 +194,11 @@ paths:
       description: API for getting the details of a specific transaction
       parameters:
         - type: integer
-          name: id
+          name: userId
+          in: path
+          required: true
+        - type: integer
+          name: transactionId
           in: path
           required: true
         - type: string 
@@ -205,7 +226,11 @@ paths:
       description: API for updating a transaction
       parameters:
         - type: integer
-          name: id
+          name: userId
+          in: path
+          required: true
+        - type: integer
+          name: transactionId
           in: path
           required: true
         - type: string 
@@ -238,7 +263,11 @@ paths:
       description: API for deleting a specific transaction
       parameters:
         - type: integer
-          name: id
+          name: userId
+          in: path
+          required: true
+        - type: integer
+          name: transactionId
           in: path
           required: true
         - type: string 
